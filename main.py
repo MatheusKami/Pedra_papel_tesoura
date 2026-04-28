@@ -1,74 +1,30 @@
 import random
 
-#variaveis
+opcoes = ["pedra", "papel", "tesoura"]
 
-#cerebro_computador
-pedra = 1
-papel = 2
-tesoura = 3
+while True:
+    print("Pedra, papel ou tesoura (ou 'sair')")
+    
+    jogador = input("Sua escolha: ").lower()
 
-#chave
-saida = False
+    if jogador == "sair":
+        break
 
-#entrada :)
-#processamento
-#saida
+    if jogador not in opcoes:
+        print("Entrada inválida\n")
+        continue
 
-#ligado ou desligado
-while saida == False:
-    escolha_pc = ""
+    escolha_pc = random.choice(opcoes)
 
-    #ensinar
-    print("papel pedra ou tesoura")
+    print(f"PC escolheu: {escolha_pc}")
 
-    #player escolhendo
-    jogador = input("Qual sua escolha: ")#<------
-
-    #computador escolheu
-    escolha = random.randint(1,3)#<------
-    print("o num é 3 ", escolha)
-
-    #processamento
-
-    #transforma a escolha do pc
-    if escolha == 1:
-        escolha_pc = "pedra"
-
-    elif escolha == 2:
-        escolha_pc = "papel"
-
+    if jogador == escolha_pc:
+        print("Empate\n")
+    elif (
+        (jogador == "pedra" and escolha_pc == "tesoura") or
+        (jogador == "papel" and escolha_pc == "pedra") or
+        (jogador == "tesoura" and escolha_pc == "papel")
+    ):
+        print("Você ganhou!\n")
     else:
-        escolha_pc = "tesoura"
-
-    #resultado
-    if jogador == "pedra":
-        if escolha_pc == "papel":
-            print("o pc escolheu papel, Voce perdeu!")
-        elif escolha_pc == "tesoura":
-            print("voce ganhou, o pc escolheu tesoura")
-        else:
-            print("empate")
-
-    elif jogador == "papel":
-        if escolha_pc == "papel":
-            print("empate")
-        elif escolha_pc == "tesoura":
-            print("o pc escolheu tesoura, Voce perdeu!")
-        else:
-            print("voce ganhou, o pc escolheu pedra")
-
-    elif jogador == "tesoura":
-        if escolha_pc == "papel":
-            print("voce ganhou, o pc escolheu papel")
-
-        elif escolha_pc == "tesoura":
-            print("empate")
-
-        else:
-            print("o pc escolheu pedra, Voce perdeu!")
-
-    elif jogador == "sair":
-        saida == True
-
-    else:
-        print("entrada errada")
+        print("Você perdeu!\n")
